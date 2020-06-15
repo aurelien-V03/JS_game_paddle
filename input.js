@@ -3,6 +3,7 @@ export default class InputHandler{
     
     constructor(paddle, game){
         document.addEventListener('keydown', function(event){
+            console.log(event.keyCode);
              switch(event.keyCode)
              {
                  // LEFT
@@ -15,12 +16,19 @@ export default class InputHandler{
                     break;
                 // ESC
                 case 27:
-                    game.pause();
+                    if(game.isRunning()){
+                        game.pause();
+                    }
+                    else if(game.isPaused())
+                    {
+                       game.running();
+                    }
                     break;
                 // SPACE BAR
                 case 32:
                     game.start();
                     break;
+               
              }
         });
 

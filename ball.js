@@ -1,4 +1,6 @@
 import {detectCollision } from './collisionDetection';
+import Audio from './audio';
+
 export default  class Ball{
   
     constructor(game){
@@ -34,13 +36,21 @@ export default  class Ball{
             this.speed.x = -this.speed.x;
         }
 
-        // ball hit UP or DOWN screen
-        if(this.position.y + this.size > this.gh || this.position.y < 0)
+        // ball hit UP
+        if(this.position.y < 0)
         {
             this.speed.y = -this.speed.y;
         }
 
+        // ball hit bottom = GAME OVER
+        if(this.position.y + this.size > this.gh)
+        {
+            this.game.lives--;
+        }
+
+        // if ball hits paddle
         if(detectCollision(this,this.game.padle)){
+         Audio.playRebondPaddle();
          this.speed.y = -this.speed.y;   
          this.position.y = this.game.padle.position.y - this.size;
         }

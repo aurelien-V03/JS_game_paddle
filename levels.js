@@ -1,14 +1,24 @@
 import Brick from './brick';
 
-export function buildLevel(game,level1){
+
+/*
+    return Array of Brick for level 1
+*/
+export function buildLevel(game,levelNumber){
     var bricks = [];
-    level1.forEach( (row,rowIndex) => {
+    // if level number > number of level available
+    if(levelNumber + 1 > levels.length)
+    {
+        return null;
+    }
+    var levelChosen = levels[levelNumber]
+    levelChosen.forEach( (row,rowIndex) => {
         row.forEach( (brick, brickIndex) => {
             if(brick == 1)
             {
                 var position = {
-                    x: 52 * brickIndex,
-                    y: 24 * rowIndex
+                    x: Brick.width * brickIndex,
+                    y: Brick.height * rowIndex
                 }
                 bricks.push(new Brick(game,position));
             }
@@ -17,20 +27,11 @@ export function buildLevel(game,level1){
 
     return bricks;
 }
-export const level1 = [
-    [0,1,0,1,0,],
-    [0,0,0,0,0],
-    [0,0,0,0,0],
-    [0,0,0,0,0],
-     [0,0,1,0,1],
-      [0,0,0,0,0], [0,0,1,0,1],
-      [0,0,0,0,0], [0,0,1,0,1],
-      [0,0,0,0,0], [0,0,1,0,0],
-      [0,0,0,0,0], [0,0,1,0,1],
-      [0,0,1,0,0], [0,0,0,0,1],
-      [0,1,0,0,0], [0,0,1,0,0],
-      [0,0,0,0,0], [0,0,1,0,1],
-      [0,0,0,1,0], [0,0,1,0,1],
-      [0,0,1,0,0]
-
+export const levels = [
+    [
+      [1,0,0,] 
+    ],
+    [
+    [1,0,0] 
+  ]
 ];
