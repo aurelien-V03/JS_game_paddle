@@ -1,6 +1,5 @@
 export default class InputHandler{
 
-    
     constructor(paddle, game){
         document.addEventListener('keydown', function(event){
             console.log(event.keyCode);
@@ -26,7 +25,9 @@ export default class InputHandler{
                     break;
                 // SPACE BAR
                 case 32:
+                    if(game.isOnMenu()){
                     game.start();
+                    }
                     break;
                
              }

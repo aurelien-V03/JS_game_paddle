@@ -3,6 +3,7 @@ import {detectCollision, detectCollisionSide } from './collisionDetection';
 import Audio from './audio';
 export default class Brick{
 
+    // Bricks : WIDTH / HEIGHT
     static width = 100;
     static height = 50;
 

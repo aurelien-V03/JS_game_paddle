@@ -174,5 +174,9 @@ export default class Game{
         this.gamestate = GAMESTATE.RUNNING;
     }
 
+    isOnMenu(){
+        return this.gamestate == GAMESTATE.MENU;
+    }
+
 
 }
