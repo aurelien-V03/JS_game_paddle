@@ -33,7 +33,7 @@ export default class Game{
         this.inputHandler = new InputHandler(this.padle,this);
         this.ball = new Ball(this);
 
-
+        // All the objects in the game 
         this.gamesObject = [this.ball, this.padle,...this.currentLevel];
     }
 
@@ -104,7 +104,7 @@ export default class Game{
         }
     }
 
-    // When user press 'ESC' to pause the game
+    // When user press 'ESC' it pauses the game
     pause(){
         if(this.gamestate == GAMESTATE.PAUSE){
             this.gamestate = GAMESTATE.RUNNING;
@@ -115,7 +115,13 @@ export default class Game{
         console.log("Pause game " + this.gamestate);
     }
 
-   
+   /*
+    Display a text and a background on the screen
+        @ctx = 2d context
+        @fillStyle = background of screen
+        @font = font for text (ex : 20px Arial)
+        @fillText = the text you want to display
+   */
     gameScreenText(ctx,fillStyle, font, fillText){
         ctx.rect(0,0,this.game_width,this.game_height);
         ctx.fillStyle = fillStyle;
@@ -127,9 +133,6 @@ export default class Game{
     }
    
     
-
-   
-
     // return true if the game is in RUNNING MODE
     isRunning(){
        return this.gamestate == GAMESTATE.RUNNING;  
@@ -144,6 +147,7 @@ export default class Game{
         this.gamestate = GAMESTATE.RUNNING;
     }
 
+    // return true of the game is on the menu screen
     isOnMenu(){
         return this.gamestate == GAMESTATE.MENU;
     }

@@ -1,8 +1,15 @@
+/*
+    Class that handle the input of the user 
+
+*/
 export default class InputHandler{
 
     constructor(paddle, game){
+        // When user PRESS a key down
         document.addEventListener('keydown', function(event){
+
             console.log(event.keyCode);
+
              switch(event.keyCode)
              {
                  // LEFT
@@ -32,7 +39,7 @@ export default class InputHandler{
                
              }
         });
-
+        // When user releases key up
         document.addEventListener('keyup',function(event){
             switch(event.keyCode)
              {
