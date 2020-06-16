@@ -14,11 +14,14 @@ export default class Audio{
     }
     // Sound of the ball touches paddle
     static playRebondPaddle(){
+        this.audio_rebond.currentTime = 0;
          this.audio_rebond.play();
     }
 
     // Sound when the ball touches a brick and break it
     static playBreakingBrick(){
+        // Restart the audio to 0s
+        this.audio_brickBreaking.currentTime = 0;
         this.audio_brickBreaking.play();
     }
 
