@@ -89,19 +89,18 @@ export default class Game{
         this.gamesObject.forEach((obj) => {obj.draw(ctx)});
   
         if(this.gamestate == GAMESTATE.PAUSE){
-            this.gamePauseScreen(ctx);
+            this.gameScreenText(ctx,"rgba(0,0,0,0.5)","30px Arial", "paused");
         }
         if(this.gamestate == GAMESTATE.MENU){
-             this.gameMenuScreen(ctx)
+             this.gameScreenText(ctx,'rgba(0,0,0,1)',"30px Arial", "Press SPACE BAR to start.");
         }
-
         if(this.gamestate == GAMESTATE.GAMEOVER)
         {
-            this.gameOverScreen(ctx);
+            this.gameScreenText(ctx,'rgba(0,0,0,1)',"30px Arial", "GAME OVER");
         }
         if(this.gamestate == GAMESTATE.GAMEWON)
         {
-            this.gameWonScreen(ctx);
+            this.gameScreenText(ctx,'rgba(0,0,0,1)',"30px Arial", "GAME WON");
         }
     }
 
@@ -117,48 +116,19 @@ export default class Game{
     }
 
    
-    // Pause screen when user press "ESC"
-    gamePauseScreen(ctx)
-    {
+    gameScreenText(ctx,fillStyle, font, fillText){
         ctx.rect(0,0,this.game_width,this.game_height);
-        ctx.fillStyle = "rgba(0,0,0,0.5)";
+        ctx.fillStyle = fillStyle;
         ctx.fill();
-        ctx.font ="30px Arial";
+        ctx.font = font;
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText("Paused",this.game_width/2,this.game_height/2);
+        ctx.fillText(fillText,this.game_width/2,this.game_height/2);
     }
-    // Menu screen when game loads
-    gameMenuScreen(ctx){
-        ctx.rect(0,0,this.game_width,this.game_height);
-        ctx.fillStyle = 'rgba(0,0,0,1)';
-        ctx.fill();
-        ctx.font ="30px Arial";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText("Press SPACE BAR to start",this.game_width/2,this.game_height/2);
-    }
+   
+    
 
-    gameOverScreen(ctx){
-        ctx.rect(0,0,this.game_width,this.game_height);
-        ctx.fillStyle = 'rgba(0,0,0,1)';
-        ctx.fill();
-        ctx.font ="30px Arial";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText("GAME OVER (Press key 'P' to restart) ",this.game_width/2,this.game_height/2);
-    }
-
-    gameWonScreen(ctx)
-    {
-        ctx.rect(0,0,this.game_width,this.game_height);
-        ctx.fillStyle = 'rgba(0,0,0,1)';
-        ctx.fill();
-        ctx.font ="30px Arial";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText("GAME WON ! ",this.game_width/2,this.game_height/2);
-    }
+   
 
     // return true if the game is in RUNNING MODE
     isRunning(){
