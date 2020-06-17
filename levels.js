@@ -22,7 +22,7 @@ export function buildLevel(game,levelNumber){
                     x: Brick.width * brickIndex,
                     y: Brick.height * rowIndex
                 }
-                bricks.push(new Brick(game,position));
+                bricks.push(new Brick(position));
             }
         })   ;
     });
@@ -34,7 +34,13 @@ export function buildLevel(game,levelNumber){
 // levels available for the game 
 export const levels = [
     [
-      [0,1,0]
+      [0,1,0],
+      [1,1,0],
+      [1,1,0], 
+      [0,1,1], 
+      [0,1,1,0,0,0,1,1],
+      [0,1,1,1,1,1,1,0,1], 
+      [0,1,1,1,1,1,1]
       
     ],
     [

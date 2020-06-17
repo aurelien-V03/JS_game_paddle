@@ -2,8 +2,10 @@ import Paddle from './Paddle';
 import InputHandler  from './input';
 import Ball from './ball';
 import Brick from './brick';
+import BrickExtra from './BrickExtra';
 import {buildLevel} from './levels'; 
-
+import BrickSuper from './BrickSuper';
+import {randomNumber} from './numberGeneration';
 
 // Game State
 const GAMESTATE = {
@@ -23,6 +25,8 @@ export default class Game{
 
         this.lives = 1;
 
+        BrickSuper.game = this;
+
         // Level 
         this.currentLevelNumber = 0;
         this.levelBrickHit = 0;
@@ -39,10 +43,32 @@ export default class Game{
 
     start(){
         console.log("Game start");
+        BrickSuper.game = this;
+
         if(this.gamestate == GAMESTATE.MENU){
             var bricks = buildLevel(this,this.currentLevelNumber);
             this.gamesObject = [this.ball, this.padle,...bricks];
             this.gamestate = GAMESTATE.RUNNING;
+
+            // 5% chance summon extra brick in game 
+            var id_spawn_extra_brick = setInterval(
+                () => {
+
+                    var random_Number = Math.random();
+                    console.log(random_Number);
+
+                    // Summon the extra brick
+                    if(random_Number <= 0.5)
+                    {
+                       console.log("SUMMON BRICK");
+                       var position = {x:randomNumber(0,this.game_width), y:this.padle.position.y};
+                       var brick_extra = new BrickExtra(position );
+                       this.gamesObject.push(brick_extra);
+                    }
+                }, 1000
+            );
+
+
         }
     }
 
